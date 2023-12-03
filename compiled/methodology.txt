@@ -1,0 +1,28 @@
+Begginer reverse engineering 
+	use ghidra to view the decompiled code
+		undefined8 main(void)
+
+{
+  int input;
+  char local_28 [32];
+  
+  fwrite("Password: ",1,10,stdout);
+  __isoc99_scanf("DoYouEven%sCTF",local_28);
+  input = strcmp(local_28,"__dso_handle");
+  if ((-1 < input) && (input = strcmp(local_28,"__dso_handle"), input < 1)) {
+    printf("Try again!");
+    return 0;
+  }
+  input = strcmp(local_28,"_init");
+  if (input == 0) {
+    printf("Correct!");
+  }
+  else {
+    printf("Try again!");
+  }
+  return 0;
+}
+
+
+Use ghidra or ltrace 
+	How scanf and strcmp works
