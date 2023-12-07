@@ -1,0 +1,12 @@
+Level0
+	Hint "Pull the strings"
+	running strings command on the exe shows alot of strings tried grep for flag nothing
+
+	Loaded the exe into ghidra checked for defined strings and found the flag
+
+	Alternative method to solve
+		use strings command and some regex 
+
+		strings level1 | grep -E '.{10,100}
+
+Level 1

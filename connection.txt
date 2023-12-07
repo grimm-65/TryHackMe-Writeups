@@ -1,0 +1,6 @@
+onnection to windows box using:
+	RDP
+	xfreerdp /u:(username) /p:(password) /v:(Machine IP) /dynamic-resolution { without brackets }
+
+	ssh
+	ssh user@<ip>
