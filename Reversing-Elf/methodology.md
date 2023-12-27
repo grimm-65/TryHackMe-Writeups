@@ -2,7 +2,7 @@
 chmod +x crackme1
 ./crckme1 
 run above to get the flag
-![Alt text](/img/crackme1.png)
+![command](./img/crackme1.png)
 Run strings commnd on the binary and you get the flag :) 
 
 	Crackme2
